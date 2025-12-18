@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+
+
+
+   
+    <style>
+
+nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 5px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span{
+    background: linear-gradient(
+        270deg,
+        #b8dcb7 10%,
+        #629985 100%
+    );
+    background-clip: text;
+    color: transparent;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 35px;
+    font-weight: bold;
+    
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #2d5449;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: #2d5449;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 50%;
+}
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 100px;
+            background-color: #f4f9f1; 
+            color: #333; 
+        }
+    
+        /* Container - Flex Layout for Sidebar and Main Content */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+            gap: 30px;
+            justify-content: flex-start;
+        }
+    
+        /* Sidebar (User Profile) */
+        .sidebar {
+            width: 300px; /* Fixed width for the profile */
+            background: #468585;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    
+        .profile img {
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #f4f9f1; 
+        }
+    
+        .profile h2, .profile p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.25em;
+        }
+    
+        .skills h3 {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #f4f9f1;
+        }
+    
+        .skill {
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+    
+        .bar {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+    
+        .fill {
+            height: 100%;
+            background: #ffb400;
+            transition: width 0.5s ease-in-out;
+        }
+    
+
+        .main-content {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px;
+            margin-top: 20px;
+        }
+    
+
+        .bio, .goals, .frustrations, .experience, .volunteer, .un-goals, .contact {
+            background: #9cdba6;
+            padding: 25px;
+            font-size: 1.0em;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .bio:hover, .goals:hover, .frustrations:hover, .experience:hover, .volunteer:hover, .un-goals:hover, .contact:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+    
+        .goals-container p {
+            line-height: 1.8;
+            margin-bottom: 5px;
+        }
+    
+        .volunteer img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+    
+        .un-goals {
+            display: flex;
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+    
+        .un-goals img {
+            width: 60%;  
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+    
+        .un-goals img:hover {
+            transform: scale(1.05); 
+        }
+    
+        .contact form {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .contact input, .contact textarea {
+            margin: 12px 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+    
+        .contact input:focus, .contact textarea:focus {
+            border-color: #3498db;
+        }
+    
+        .contact button {
+            background: #4a5c9b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+    
+        .contact button:hover {
+            background: #3498db;
+        }
+    
+        .calendar {
+    max-width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+table {
+    width: 40%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: #468585;
+    color: white;
+}
+
+td {
+    background: #f9f9f9;
+    transition: background 0.3s ease;
+}
+
+td:hover {
+    background: #ecf0f1;
+}
+
+.available {
+    background: #9cdba6 !important;
+    color: white;
+}
+
+.busy {
+    background: #be6c74 !important;
+    color: white;
+}
+
+footer {
+    background: linear-gradient(to bottom, rgba(98, 153, 133, 0.9), rgba(45, 84, 73, 0.95));
+    padding: 50px 0 30px;
+    margin-top: auto;
+    backdrop-filter: blur(10px);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: #b8dcb7;
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+footer p {
+    text-align: center;
+    color: white;
+    opacity: 0.8;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+    
+            .sidebar {
+                width: 100%; /* Sidebar will take full width on small screens */
+                padding: 15px;
+            }
+    
+            .main-content {
+                grid-template-columns: 1fr; /* Stack content blocks on top of each other */
+            }
+    
+            .contact button {
+                padding: 14px;
+            }
+        }
+    
+        @media (max-width: 600px) {
+            th, td {
+                padding: 6px;
+                font-size: 14px;
+            }
+    
+            .profile img {
+                width: 120px; 
+                height: 120px;
+            }
+    
+            .sidebar {
+                padding: 12px;
+            }
+        }
+    </style>
+    </head>
+    
+    <body>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <span>SOLAR</span>
+                </div>
+                <div class="nav-links">
+                    <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/home.html">Home</a>
+                    <a href="https://w2065135.users.ecs.westminster.ac.uk/solar/volunteer.html">Volunteer</a>
+                    <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/feedback.html">Feedback</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-trigger">Contents</a>
+                        <div class="dropdown-menu">
+                            <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/content_ST2.html">Sustainable Development Strategies</a>
+                            <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/content_ST4.html">Heidi</a>
+                            <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/content_ST3.html">Shaifur</a>
+                            <a href="https://w2065135.users.ecs.westminster.ac.uk/solar/content_ST1.html">Aaron</a>
+                        </div>
+                    </div>
+                    <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/profile.html">User Profile</a>
+                    <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/table.html">Table</a>
+                    <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/team.html">Team</a>
+                    <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/sitemap.html">Sitemap</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-trigger">Validation</a>
+                        <div class="dropdown-menu">
+                            <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/validation_ST2.html">Ryan</a>
+                            <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/validation_ST4.html">Heidi</a>
+                            <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/validation_ST3.html">Shaifur</a>
+                            <a href="https://w2065135.users.ecs.westminster.ac.uk/solar/validation_ST1.html">Aaron</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-trigger">Page Editor</a>
+                        <div class="dropdown-menu">
+                            <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/pageEditor_ST2.html">Ryan</a>
+                            <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/pageEditor_ST4.html">Heidi</a>
+                            <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/pageEditor_ST3.html">Shaifur</a>
+                            <a href="https://w2065135.users.ecs.westminster.ac.uk/solar/pageEditor_ST1.html">Aaron</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile">
+                <img src="userprofile.jpg.jpeg" alt="John Smith">
+                <h2>John Smith</h2>
+                <p class="quote">"Building a better web, one pixel at a time—while protecting the planet, one action at a time."</p>
+                <ul class="info">
+                    <li><strong>Age:</strong> 19</li>
+                    <li><strong>Work:</strong> Student</li>
+                    <li><strong>Location:</strong> London</li>
+                </ul>
+            </div>
+            <div class="skills">
+                <h3>Skills</h3>
+                <div class="skill">
+                    <p>HTML& CSS</p>
+                    <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>JavaScript</p>
+                    <div class="bar"><div class="fill" style="width: 70%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>Public Speaking</p>
+                    <div class="bar"><div class="fill" style="width: 60%;"></div></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="main-content">
+            <div class="bio">
+                <h3>Short Bio</h3>
+                <p>Passionate about coding and the environment, I create visually appealing websites with eco-friendly practices. 
+                    By optimizing performance and using sustainable technologies, I aim to reduce the tech industry’s 
+                    carbon footprint. I believe small changes in web 
+                    development can drive meaningful action in combating climate change and fostering
+                     a sustainable future.</p>
+            </div>
+
+            <div class="goals">
+                <h3>Goals</h3>
+                <ul>
+                    <li><strong>Goal 1 -</strong> Raise Awareness Through Digital Platforms</li>
+                    <li><strong>Goal 2 -</strong>  Support Ethical & Inclusive Technology</li>
+                    <li><strong>Goal 3 -</strong> Develop Eco-Friendly Digital Solutions</li>
+                    <li><strong>Goal 4 -</strong> Promote Green Hosting and Sustainable Infrastructure</li>
+                    <li><strong>Goal 5 -</strong> Encourage Collaboration for a Circular Economy in Tech</li>
+                    <li><strong>Goal 6 -</strong> Advocate for Sustainable Practices in Web Design and Development</li>
+                </ul>
+            </div>
+
+            <div class="frustrations">
+                <h3>Frustrations</h3>
+                <ul>
+                    <li> Resistance to Change in the Tech Industry</li>
+                    <li> Limited Access to Green Hosting & Eco-Friendly Tech</li>
+                    <li> Lack of Awareness About Sustainable Web Practices</li>
+                    <li>High Costs of Sustainable Technology Solutions</li>
+                    <li>Fragmented Standards and Lack of Industry-Wide Sustainability Guidelines</li>
+
+                </ul>
+            </div>
+
+
+            <div class="volunteer">
+                <h3>Volunteering Availability</h3> 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td><td></td><td></td><td></td><td>1</td><td class="available">2</td><td class="busy">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="available">4</td><td>5</td><td>6</td><td class="busy">7</td><td>8</td><td>9</td><td class="available">10</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td><td class="busy">12</td><td>13</td><td>14</td><td class="available">15</td><td>16</td><td>17</td>
+                                </tr>
+                                <tr>
+                                    <td class="busy">18</td><td>19</td><td class="available">20</td><td>21</td><td>22</td><td>23</td><td class="available">24</td>
+                                </tr>
+                                <tr>
+                                    <td>25</td><td>26</td><td class="busy">27</td><td>28</td><td class="available">29</td><td>30</td><td>31</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                
+    
+
+            <div class="un-goals">
+                <h3>UN Goals I Support</h3>
+                <div class="goals-grid">
+                    <img src="cilmate_action.JPG" alt="Goal 1">
+                    <img src="affordable_energy.JPG" alt="Goal 2">
+                </div>
+            </div>
+
+            <div class="contact">
+                <h3>Contact Me</h3>
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/home.html">Home</a>
+                <a href="https://w2065135.users.ecs.westminster.ac.uk/solar/volunteer.html">Volunteer</a>
+                <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/feedback.html">Feedback</a>
+                <a href="">Contents</a>
+                <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/profile.html">User Profile</a>
+                <a href="https://w1789088.users.ecs.westminster.ac.uk/solar/table.html">Table</a>
+                <a href="https://w1969305.users.ecs.westminster.ac.uk/solar/team.html">Team</a>
+                <a href="https://w2088981.users.ecs.westminster.ac.uk/solar/sitemap.html">Sitemap</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>© 2025 SOLAR. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
